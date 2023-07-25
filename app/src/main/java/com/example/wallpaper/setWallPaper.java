@@ -88,7 +88,6 @@ public class setWallPaper extends AppCompatActivity {
                 if(downloadCheck){
                     changeWallPaper(1, finalFile);
                 }else{
-
                     Toast.makeText(setWallPaper.this, "Please download the wallpaper first!", Toast.LENGTH_SHORT).show();
                 }
             }

@@ -37,17 +37,18 @@ public class MainActivity extends AppCompatActivity {
         gridView = findViewById(R.id.gridView);
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-//        String[] names = new String[]{"Shrimohan", "Soham", "Aman", "Sanskriti", "Divyansh", "Kshitij", "Rambabu", "Chinmay"};
+        String[] names = new String[]{"Shrimohan", "Soham", "Aman", "Sanskriti", "Divyansh", "Kshitij", "Rambabu", "Chinmay"};
 
-//        nameLinkList.addAll(Arrays.asList(names));
+        nameLinkList.addAll(Arrays.asList(names));
 
 
-        wallPaperAdapter wallPaperAdapter = new wallPaperAdapter(this, nameLinkList, imgLinkList);
+        wallPaperAdapter wallPaperAdapter = new wallPaperAdapter(this, names, imgLinkList);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(MainActivity.this, setWallPaper.class);
+//                intent.putExtra("Location", imgLocations[i]);
                 intent.putExtra("imgURL",imgLinkList.get(i));
                 startActivity(intent);
             }
@@ -60,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
                 for (DataSnapshot snap : snapshot.getChildren()) {
                     String link = (String) snap.getValue();
                     imgLinkList.add(String.valueOf(link));
-                    nameLinkList.add("Shrimohan");
                 }
                 gridView.setAdapter(wallPaperAdapter);
             }
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String link = (String) snapshot.getValue();
                 imgLinkList.add(String.valueOf(link));
-//                nameLinkList.add("Rajesh");
+                nameLinkList.add("Rajesh");
                 wallPaperAdapter.updateList(imgLinkList);
             }
 
