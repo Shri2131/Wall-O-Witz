@@ -60,9 +60,12 @@
 
     <GridView
         android:id="@+id/gridView"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="664dp"
         android:numColumns="2"
+        android:verticalSpacing="20sp"
+        android:horizontalSpacing="0dp"
+        android:scrollbarThumbVertical="@color/tertiaryCustom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

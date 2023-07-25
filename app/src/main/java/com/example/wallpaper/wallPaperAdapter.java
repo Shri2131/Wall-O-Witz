@@ -15,21 +15,20 @@ import java.util.ArrayList;
 
 public class wallPaperAdapter extends BaseAdapter {
     private ArrayList<String> imgLocList;
-    private String[] names;
-    private Activity activity;
+    private final ArrayList<String> nameList;
+    final private Activity activity;
 
-    public wallPaperAdapter(Activity activity, String[] names, ArrayList<String> imgLocList){
+    public wallPaperAdapter(Activity activity, ArrayList<String> nameList, ArrayList<String> imgLocList){
         super();
-        this.names=names;
+        this.nameList=nameList;
         this.activity=activity;
         this.imgLocList=imgLocList;
     }
 
-    public String getNames(int position) {
-        return names[position];
-    }
 
     public String getLink(int position){return imgLocList.get(position);}
+
+    public String getName(int position){return nameList.get(position);}
 
     @Override
     public int getCount() {
@@ -38,7 +37,7 @@ public class wallPaperAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return names[i];
+        return nameList.get(i);
     }
 
     @Override
@@ -46,7 +45,7 @@ public class wallPaperAdapter extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder{
+    private static class ViewHolder{
         ImageView imageView1;
         TextView textView1;
     }
@@ -64,7 +63,7 @@ public class wallPaperAdapter extends BaseAdapter {
         LayoutInflater inflater = activity.getLayoutInflater();
         if(view==null){
             view=inflater.inflate(R.layout.wall_paper_adapter,null);
-            holder=new ViewHolder();
+            holder= new ViewHolder();
             holder.imageView1 = view.findViewById(R.id.wallPaperImage1);
             holder.textView1 =view.findViewById(R.id.wallPaperText1);
             view.setTag(holder);
@@ -72,7 +71,7 @@ public class wallPaperAdapter extends BaseAdapter {
             holder=(ViewHolder) view.getTag();
         }
         Picasso.get().load(getLink(i)).into(holder.imageView1);
-        holder.textView1.setText("Uploaded by "+getItem(i));
+        holder.textView1.setText("Uploaded by "+getName(i));
         return view;
     }
 
